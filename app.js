@@ -11,10 +11,12 @@ app.get('/', function(req, res) {
 
 app.get('/video', function(req, res) {
   let path = 'assets/sample.mp4';
+  let contentType = 'video/mp4';
 
   if (req.query['format'] === 'webm') {
     console.info('format is webm');
     path = 'assets/sample.webm';
+    contentType = 'video/webm';
   }
 
   const stat = fs.statSync(path);
@@ -39,7 +41,7 @@ app.get('/video', function(req, res) {
       'Content-Range': `bytes ${start}-${end}/${fileSize}`,
       'Accept-Ranges': 'bytes',
       'Content-Length': chunkSize,
-      'Content-Type': 'video/mp4',
+      'Content-Type': contentType,
     };
 
     if (req.query['no-accept-ranges'] === 'true') {
