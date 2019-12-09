@@ -25,8 +25,6 @@
 
   </style>
 
-
-
   <title>Video scrubbing tests</title>
 </head>
 <body>
@@ -112,9 +110,9 @@
 
 <div class="container-fluid mb-5">
 
-  <h2>C) WEBM format with standard range headers response</h2>
+  <h2>C) Ignore request range header</h2>
   <p class="lead">
-    Returns the HTTP response header <mark>Accept-Ranges: bytes</mark> for range requests.
+    The request <mark>Range: bytes=0-</mark> header is ignored so the server returns with a standard HTTP 200 / OK response.
   </p>
 
   <div class="card-deck mb-3 text-center">
@@ -125,7 +123,7 @@
       </div>
       <div class="card-body">
         <video id="videoPlayer" controls muted="muted" style="width: 100%">
-          <source src="/video?format=webm" type="video/webm">
+          <source src="/video?ignore-range-header=true" type="video/mp4">
         </video>
       </div>
     </div>
@@ -137,7 +135,7 @@
       </div>
       <div class="card-body">
         <video class="video-js vjs-fluid" controls preload="auto" data-setup="{}" style="width: 100%">
-          <source src="/video?videojs=true&format=webm" type="video/webm" />
+          <source src="/video?videojs=true&ignore-range-header=true" type="video/mp4" />
         </video>
       </div>
     </div>
@@ -145,8 +143,6 @@
   </div>
 
 </div>
-
-
 
 <script src="https://vjs.zencdn.net/7.5.5/video.js"></script>
 
